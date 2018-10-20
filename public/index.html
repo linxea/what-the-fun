@@ -10,9 +10,13 @@
     <a-sphere src="#earth-surface" position="0 10 -10" rotation="-180 0 90" radius="1.25" color="#green"></a-sphere>
 
     <a-assets><a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/moon3d.gltf"></a-asset-item></a-assets>
-    <a-entity gltf-model="#moon-surface-3d" scale="0.0001 0.0001 0.0001"></a-entity>
+    <a-entity gltf-model="#moon-surface-3d" position="0 1 0" scale="0.0001 0.0001 0.0001"></a-entity>
 
     <a-sky color="black"></a-sky>
+
+    <a-entity id="leftHand" hand-controls="left"></a-entity>
+    <a-entity id="rightHand" hand-controls="right"></a-entity>
+    
   </a-scene>
 </body>
 
