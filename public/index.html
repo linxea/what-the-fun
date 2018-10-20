@@ -10,13 +10,22 @@
     <a-assets><img id="earth-surface" src="./img/earth_texture.jpg"></a-assets>
     <a-sphere src="#earth-surface" position="0 10 -10" rotation="-180 0 90" radius="1.25" color="#green"></a-sphere>
 
-    <a-assets>
-      <a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/moon3d.gltf"></a-asset-item>
-    </a-assets>
+    <a-assets><a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/scene.gltf"></a-asset-item></a-assets>
     <a-entity gltf-model="#moon-surface-3d" position="0 1 0" scale="0.0001 0.0001 0.0001"></a-entity>
 
+    <a-assets><a-asset-item id="moon-rock" src="./img3d/moon-rock/scene.gltf"></a-asset-item></a-assets>
+    <a-entity gltf-model="#moon-rock" position="0 0.5 -1" scale="0.15 0.15 0.15"></a-entity>
+
+    <a-assets><a-asset-item id="lunar-vehicle" src="./img3d/lunar-vehicle/scene.gltf"></a-asset-item></a-assets>
+    <a-entity gltf-model="#lunar-vehicle" position="2 1 -2" scale="0.001 0.001 0.001"></a-entity>
+
     <a-sky color="black"></a-sky>
+<<<<<<< Updated upstream
     <a-entity star-system="count: 150; radius: 500;"></a-entity>
+=======
+    <a-entity star-system="count: 500; radius: 500; depth: 0"></a-entity>
+    <a-entity light="type: ambient; color: #CCC"></a-entity>
+>>>>>>> Stashed changes
 
     <a-entity id="leftHand" hand-controls="left"></a-entity>
     <a-entity id="rightHand" hand-controls="right"></a-entity>
