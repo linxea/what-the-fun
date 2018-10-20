@@ -2,6 +2,7 @@
 
 <head>
   <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script>
 </head>
 
 <body>
@@ -9,14 +10,16 @@
     <a-assets><img id="earth-surface" src="./img/earth_texture.jpg"></a-assets>
     <a-sphere src="#earth-surface" position="0 10 -10" rotation="-180 0 90" radius="1.25" color="#green"></a-sphere>
 
-    <a-assets><a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/moon3d.gltf"></a-asset-item></a-assets>
+    <a-assets>
+      <a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/moon3d.gltf"></a-asset-item>
+    </a-assets>
     <a-entity gltf-model="#moon-surface-3d" position="0 1 0" scale="0.0001 0.0001 0.0001"></a-entity>
 
     <a-sky color="black"></a-sky>
+    <a-entity star-system="count: 500; radius: 500; depth: 0"></a-entity>
 
     <a-entity id="leftHand" hand-controls="left"></a-entity>
     <a-entity id="rightHand" hand-controls="right"></a-entity>
-    
   </a-scene>
 </body>
 
