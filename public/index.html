@@ -6,17 +6,13 @@
 
 <body>
   <a-scene>
-    <a-assets>
-      <img id="moon-surface" src="./img/ground.jpg">
-    </a-assets>
-    <a-assets>
-      <img id="earth-surface" src="./img/ground.jpg">
-    </a-assets>
+    <a-assets><img id="earth-surface" src="./img/earth_texture.jpg"></a-assets>
+    <a-sphere src="#earth-surface" position="0 10 -10" rotation="-180 0 90" radius="1.25" color="#green"></a-sphere>
 
-    <a-sphere src="#earth-surface" position="0 10 -10" radius="1.25" color="#green"></a-sphere>
+    <a-assets><a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/moon3d.gltf"></a-asset-item></a-assets>
+    <a-entity gltf-model="#moon-surface-3d" scale="0.0001 0.0001 0.0001"></a-entity>
 
-    <a-plane src="#moon-surface" position="0 0 0" rotation="-90 0 0" width="100" height="100"></a-plane>
-    <a-sky color="#ECECEC"></a-sky>
+    <a-sky color="black"></a-sky>
   </a-scene>
 </body>
 
