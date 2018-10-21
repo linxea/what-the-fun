@@ -3,40 +3,98 @@
 <head>
   <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+  <script src="./js/easyrtc.js"></script>
+  <script src="https://unpkg.com/networked-aframe@^0.6.0/dist/networked-aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+  <script src="./js/spawn.js"></script>
 </head>
 
 <body>
-  <a-scene>
+  <a-scene networked-scene="room: basic;debug: true;">
     <a-assets><img id="earth-surface" src="./img/earth_texture.jpg"></a-assets>
     <a-sphere src="#earth-surface" position="0 10 -10" rotation="-180 0 90" radius="1.25" color="#green"></a-sphere>
 
     <!-- https://en.wikipedia.org/wiki/Copernicus_(lunar_crater) -->
-    <a-assets><a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/scene.gltf"></a-asset-item></a-assets>
+    <a-assets>
+      <a-asset-item id="moon-surface-3d" src="./img3d/copernicus-crater/scene.gltf"></a-asset-item>
+    </a-assets>
     <a-entity gltf-model="#moon-surface-3d" position="0 1 0" scale="0.0001 0.0001 0.0001"></a-entity>
 
     <!-- https://en.wikipedia.org/wiki/Lunar_basalt_70017 -->
-    <a-assets><a-asset-item id="moon-rock" src="./img3d/moon-rock/scene.gltf"></a-asset-item></a-assets>
+    <a-assets>
+      <a-asset-item id="moon-rock" src="./img3d/moon-rock/scene.gltf"></a-asset-item>
+    </a-assets>
     <a-entity gltf-model="#moon-rock" position="0 0.5 -1" scale="0.2 0.2 0.2"></a-entity>
 
     <!-- https://en.wikipedia.org/wiki/Lunar_Roving_Vehicle -->
-    <a-assets><a-asset-item id="lunar-vehicle" src="./img3d/lunar-vehicle/scene.gltf"></a-asset-item></a-assets>
+    <a-assets>
+      <a-asset-item id="lunar-vehicle" src="./img3d/lunar-vehicle/scene.gltf"></a-asset-item>
+    </a-assets>
     <a-entity gltf-model="#lunar-vehicle" position="2 -0.70 -2" scale="0.0025 0.0025 0.0025"></a-entity>
 
     <!-- https://en.wikipedia.org/wiki/Falcon_Heavy -->
-    <a-assets><a-asset-item id="rocket" src="./img3d/rocket/scene.gltf"></a-asset-item></a-assets>
+    <a-assets>
+      <a-asset-item id="rocket" src="./img3d/rocket/scene.gltf"></a-asset-item>
+    </a-assets>
     <a-entity gltf-model="#rocket" position="-13 -2 -17" r20ation="-180 0 180" scale="0.5 0.5 0.5"></a-entity>
 
-    <a-entity id="eggFound" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1" text="color: #4ef580; width: 2; value: Welcome to the Copernicus Crater!\n It is a lunar impact crater named after the astronomer, Nicolaus Copernicus." look-at="0 1.6 0" position="0 2 -2" animation=""></a-entity>
-  
+    <a-entity id="eggFound" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
+      text="color: #4ef580; width: 2; value: Welcome to the Copernicus Crater!\n It is a lunar impact crater named after the astronomer, Nicolaus Copernicus."
+      look-at="0 1.6 0" position="0 2 -2" animation=""></a-entity>
 
-    
     <a-sky color="black"></a-sky>
     <a-entity star-system="count: 500; radius: 500; depth: 0"></a-entity>
     <a-entity light="type: ambient; color: #CCC"></a-entity>
 
     <a-entity id="leftHand" laser-controls="left" line="color: red; opacity: 0.75" raycaster="objects: .interactive" cursor></a-entity>
     <a-entity id="rightHand" hand-controls="right"></a-entity>
+
+    <a-assets>
+      <!-- Avatar -->
+      <template id="avatar-template">
+        <a-entity class="avatar">
+          <a-sphere class="head" color="#5985ff" scale="0.45 0.5 0.4" random-color></a-sphere>
+          <a-entity class="face" position="0 0.05 0">
+            <a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+            </a-sphere>
+            <a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+            </a-sphere>
+          </a-entity>
+        </a-entity>
+      </template>
+    </a-assets>
+    <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="0 1.6 0"
+      spawn-in-circle="radius:3" wasd-controls look-controls>
+      <a-sphere class="head" visible="false" random-color></a-sphere>
+    </a-entity>
   </a-scene>
+  <script>
+    // On mobile remove elements that are resource heavy
+    var isMobile = AFRAME.utils.device.isMobile();
+
+    if (isMobile) {
+      var particles = document.getElementById('particles');
+      particles.parentNode.removeChild(particles);
+    }
+
+    // Define custom schema for syncing avatar color, set by random-color
+    NAF.schemas.add({
+      template: '#avatar-template',
+      components: [
+        'position',
+        'rotation',
+        {
+          selector: '.head',
+          component: 'material',
+          property: 'color'
+        }
+      ]
+    });
+  </script>
 </body>
 
 </html>
