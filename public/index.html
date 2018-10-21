@@ -8,6 +8,7 @@
   <script src="https://unpkg.com/networked-aframe@^0.6.0/dist/networked-aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
   <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
   <script src="./js/spawn.js"></script>
 </head>
 
@@ -26,7 +27,13 @@
     <a-assets>
       <a-asset-item id="moon-rock" src="./img3d/moon-rock/scene.gltf"></a-asset-item>
     </a-assets>
-    <a-entity gltf-model="#moon-rock" position="0 0.5 -1" scale="0.2 0.2 0.2"></a-entity>
+    <a-entity gltf-model="#moon-rock" class="interactive" position="0 0.5 -1" scale="0.2 0.2 0.2"
+      event-set__enter="_event: mouseenter; _target: #rockinfo; visible: true"
+      event-set__leave="_event: mouseleave; _target: #rockinfo; visible: false">
+    </a-entity>
+    <a-entity id="rockinfo" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
+      text="color: #4ef580; width: 2; value: My rock"
+      look-at="0 1.6 0" position="0 0.5 -1" animation="" visible="false"></a-entity>
 
     <!-- https://en.wikipedia.org/wiki/Lunar_Roving_Vehicle -->
     <a-assets>
@@ -48,7 +55,7 @@
     <a-entity star-system="count: 500; radius: 500; depth: 0"></a-entity>
     <a-entity light="type: ambient; color: #fff"></a-entity>
 
-    <a-entity id="leftHand" hand-controls="left"></a-entity>
+    <a-entity id="leftHand" laser-controls="hand: left" line="color: red; opacity: 0.75" cursor raycaster></a-entity>
     <a-entity id="rightHand" hand-controls="right"></a-entity>
 
     <a-assets>
