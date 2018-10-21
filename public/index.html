@@ -32,8 +32,8 @@
       event-set__leave="_event: mouseleave; _target: #rock-info; visible: false">
     </a-entity>
     <a-entity id="rock-info" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
-      text="color: #4ef580; width: 2; value: My rock"
-      look-at="0 1.6 0" position="0.8 1.1 -1" animation="" visible="false"></a-entity>
+      text="color: #4ef580; width: 2; value: Lunar basalt 70017 is a Moon basalt that was last collected by astronauts Eugene Cernan and Harrison Schmitt on the last manned Moon landing, Apollo 17."
+      look-at="0 1.6 0" position="0 1.3 -1" animation="" visible="false"></a-entity>
 
     <!-- https://en.wikipedia.org/wiki/Lunar_Roving_Vehicle -->
     <a-assets>
@@ -44,19 +44,25 @@
       event-set__leave="_event: mouseleave; _target: #lunarrover-info; visible: false">
     </a-entity>
     <a-entity id="lunarrover-info" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
-      text="color: #4ef580; width: 2; value: My lunar rover"
-      look-at="2 -0.70 -2" position="2 1.5 -2" animation="" visible="false"></a-entity>
+      text="color: #4ef580; width: 2; value: The Lunar Roving Vehicle (LRV) or lunar rover is a battery-powered four-wheeled rover used on the Moon in the last three missions of the American Apollo program (15, 16, and 17) during 1971 and 1972. It was popularly known as Moon buggy."
+      look-at="0 1.6 0" position="2 1.5 -2" animation="" visible="false"></a-entity>
     
 
     <!-- https://en.wikipedia.org/wiki/Falcon_Heavy -->
     <a-assets>
       <a-asset-item id="rocket" src="./img3d/rocket/scene.gltf"></a-asset-item>
     </a-assets>
-    <a-entity gltf-model="#rocket" position="-13 -2 -17" r20ation="-180 0 180" scale="0.5 0.5 0.5"></a-entity>
+    <a-entity gltf-model="#rocket" position="-13 -2 -17" rotation="-180 0 180" scale="0.5 0.5 0.5"
+      event-set__enter="_event: mouseenter; _target: #rocket-info; visible: true"
+      event-set__leave="_event: mouseleave; _target: #rocket-info; visible: false">
+    </a-entity>
+    <a-entity id="rocket-info" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
+      text="color: #4ef580; width: 2; value: Falcon Heavy is a partially reusable heavy-lift launch vehicle designed and manufactured by SpaceX. It is derived from the Falcon 9 vehicle and consists of a strengthened Falcon 9 first stage as a central core with two additional first stages as strap-on boosters."
+     look-at="0 0.2 0" position="-2 1.5 -2" animation="" visible="false"></a-entity>
 
     <a-entity id="eggFound" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
       text="color: #4ef580; width: 2; value: Welcome to the Copernicus Crater!\n It is a lunar impact crater named after the astronomer, Nicolaus Copernicus."
-      look-at="0 1.6 0" position="0 2 -2" animation=""></a-entity>
+      look-at="0 1.6 0" position="-13 -2 -17" animation=""></a-entity>
 
     <a-sky color="black"></a-sky>
     <a-entity star-system="count: 500; radius: 500; depth: 0"></a-entity>
