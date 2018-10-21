@@ -28,18 +28,25 @@
       <a-asset-item id="moon-rock" src="./img3d/moon-rock/scene.gltf"></a-asset-item>
     </a-assets>
     <a-entity gltf-model="#moon-rock" class="interactive" position="0 0.5 -1" scale="0.2 0.2 0.2"
-      event-set__enter="_event: mouseenter; _target: #rockinfo; visible: true"
-      event-set__leave="_event: mouseleave; _target: #rockinfo; visible: false">
+      event-set__enter="_event: mouseenter; _target: #rock-info; visible: true"
+      event-set__leave="_event: mouseleave; _target: #rock-info; visible: false">
     </a-entity>
-    <a-entity id="rockinfo" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
+    <a-entity id="rock-info" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
       text="color: #4ef580; width: 2; value: My rock"
-      look-at="0 1.6 0" position="0 0.5 -1" animation="" visible="false"></a-entity>
+      look-at="0 1.6 0" position="0.8 1.1 -1" animation="" visible="false"></a-entity>
 
     <!-- https://en.wikipedia.org/wiki/Lunar_Roving_Vehicle -->
     <a-assets>
       <a-asset-item id="lunar-vehicle" src="./img3d/lunar-vehicle/scene.gltf"></a-asset-item>
     </a-assets>
-    <a-entity gltf-model="#lunar-vehicle" position="2 -0.70 -2" scale="0.0025 0.0025 0.0025"></a-entity>
+    <a-entity gltf-model="#lunar-vehicle" position="2 -0.70 -2" scale="0.0025 0.0025 0.0025"
+      event-set__enter="_event: mouseenter; _target: #lunarrover-info; visible: true"
+      event-set__leave="_event: mouseleave; _target: #lunarrover-info; visible: false">
+    </a-entity>
+    <a-entity id="lunarrover-info" mixin="slice font hoverAnimation" slice9="color: #111; height: 1; width: 2.1; padding: 0.1"
+      text="color: #4ef580; width: 2; value: My lunar rover"
+      look-at="2 -0.70 -2" position="2 1.5 -2" animation="" visible="false"></a-entity>
+    
 
     <!-- https://en.wikipedia.org/wiki/Falcon_Heavy -->
     <a-assets>
