@@ -11,7 +11,7 @@ We built a Virtual Reality Moon Exploration Web App using [A-Frame](https://afra
 - Use arrow keys on desktop browser or touch swipe on mobile browser to explore the Moon
 - If you own an Oculus Rift, you can use the touch controller to point at the objects to display description.
 
-### Hosted Websites
+### Websites
 
 - https://cryptic-brook-34281.herokuapp.com/ (run on a server to enable multiplayer)
 - https://what-the-fun-a0b3f.firebaseapp.com/ (static website)
