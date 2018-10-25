@@ -4,7 +4,7 @@
 
 We built a Virtual Reality Moon Exploration Web App using [A-Frame](https://aframe.io/). A-Frame is freaking powerful. <3
 
-## DEMO
+## Demo
 
 ### Controls
 
