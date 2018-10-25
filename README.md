@@ -21,4 +21,4 @@ We built a Virtual Reality Moon Exploration Web App using [A-Frame](https://afra
 
 ## Notes
 
-Everything is done on a rush to make things work. Don't judge. ^^
+Everything is done in a rush to make things work. Don't judge. ^^
