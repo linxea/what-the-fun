@@ -13,7 +13,6 @@ We built a Virtual Reality Moon Exploration Web App using [A-Frame](https://afra
 
 ### Websites
 
-- https://cryptic-brook-34281.herokuapp.com/ (run on a server to enable multiplayer)
 - https://what-the-fun-a0b3f.firebaseapp.com/ (static website)
 
 <img src="./images/moon.png" width="400">
